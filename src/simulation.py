@@ -66,6 +66,21 @@ df['summer_seasonality'] = 35 * np.exp(
 )
 
 
+# Define the key holiday dates for Spain / restaurant
+# spikes
+holiday_dates = pd.to_datetime([
+    "2025-01-01",  # New Year's Day
+    "2025-01-06",  # Dia de Reyes
+    "2025-12-20",  # Christmas week start
+    "2025-12-21", "2025-12-22", "2025-12-23", "2025-12-24",
+    "2025-12-25", "2025-12-26", "2025-12-27", "2025-12-28",
+    "2025-12-29", "2025-12-30", "2025-12-31",  # NYE
+])
+
+# Add a binary column to indicate if the day is a known holiday spike
+df['is_holiday_period'] = df['date'].isin(holiday_dates).astype(int)
+
+
 # --- 6. Xmas spike (last 2 weeks od December)---
 df['christmas_spike'] = 0
 
@@ -100,6 +115,7 @@ df.loc[
 
 # Round to whole numbers and avoid negative covers
 df['covers'] = df['covers'].round().clip(lower=0)
+
 
 # --- 9. Save ---
 output_path = Path("data/raw/covers_history.csv")
