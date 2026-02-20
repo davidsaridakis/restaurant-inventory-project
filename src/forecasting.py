@@ -147,6 +147,6 @@ print(forecast_2026['covers'].describe())
 print("Total:", forecast_2026['covers'].sum())
 
 # Save output CSV
-forecast_2026.to_csv("data/forecast_2026.csv", index=False)
+forecast_2026.to_csv("data/processed/forecast_2026.csv", index=False)
 
 print("Forecast saved.")
