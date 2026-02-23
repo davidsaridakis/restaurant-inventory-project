@@ -142,7 +142,7 @@ forecast_df['trend'] = np.arange(len(forecast_df)) * daily_increment
 
 # Initialize future covers as NaN
 forecast_df.loc[len(df):, 'covers'] = np.nan
-
+historical_mean = df['covers'].mean()
 
 # --- Recursive Forecasting ---
 
