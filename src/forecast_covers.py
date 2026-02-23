@@ -1,3 +1,20 @@
+"""
+forecast_orders.py
+
+Forecast daily covers for 2026 based on historical data:
+
+
+Output:
+    data/processed/forecast_2026.csv.
+
+Run:
+    python src/forecast_covers.py
+
+Next Steps:
+- Use the outputted data to generate ingredient level
+- demand for orders
+"""
+
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor
