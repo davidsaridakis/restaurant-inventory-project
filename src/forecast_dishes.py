@@ -76,7 +76,28 @@ def main():
     df_dishes_2026['covers'] = df_covers_2026['covers']
 
 
-    # --- 6. Save 2026 forecasted dishes ---
+    # --- 6. Monthly Aggregation ---
+    df_dishes_2026['month'] = df_dishes_2026['date'].dt.month
+
+    # Aggregate by month
+    monthly_dishes_2026 = (
+        df_dishes_2026
+        .groupby('month')[dish_columns + ['covers']]
+        .sum()
+        .reset_index()
+    )
+
+    # Per-cover monthly ratio
+    monthly_dishes_2026_per_cover = monthly_dishes_2026.copy()
+
+    for dish in dish_columns:
+        monthly_dishes_2026_per_cover[dish] = (
+            monthly_dishes_2026[dish] / 
+            monthly_dishes_2026['covers']
+        )
+
+
+    # --- 7. Save 2026 forecasted dishes ---
     output_path = Path("data/processed/forecasted_dishes_2026.csv")
     df_dishes_2026.to_csv(output_path, index=False)
 
