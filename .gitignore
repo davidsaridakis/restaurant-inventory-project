@@ -4,5 +4,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.csv
 *.zip
+*.db
+*.sqlite
 .DS_Store
 .env
