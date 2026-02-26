@@ -1,3 +1,15 @@
+""""
+export_procurement_to_sql.py
+
+Export weekly procurement plan to SQL database.
+
+Input:
+    outputs/tables/weekly_procurement_plan_2026.csv
+
+Output:
+    analytics.db
+"""
+
 from sqlalchemy import create_engine
 import pandas as pd
 
@@ -8,7 +20,7 @@ def main():
         "outputs/tables/weekly_procurement_plan_2026.csv"
     )
 
-    # Database connection example
+    # Database connection
     engine = create_engine("sqlite:///analytics.db")
 
     df_procurement.to_sql(
